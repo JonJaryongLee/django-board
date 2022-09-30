@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>수정하기</h1>
+    <div>글번호: {{ article.pk }}</div>
+    <div>글제목: {{ article.title }}</div>
+    <div>글내용: {{ article.content }}</div>
+    <a href="{% url 'articles:board' %}">게시판으로 가기</a>
+    <hr />
+    <form action="{% url 'articles:update' article.pk %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="title">글제목</label>
+            <input name="title" id="title" type="text">
+        </div>
+        <div>
+            <label for="content">글내용</label>
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-secondary">수정하기</button>
+    </form>
+{% endblock  %}

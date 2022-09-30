@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <a href="{% url 'articles:board' %}">게시판으로 돌아가기</a>
+    </div>
+    <div>글번호: {{ article.id }}</div>
+    <div>글제목: {{ article.title }}</div>
+    <div>글내용: {{ article.content }}</div>
+    <div>
+        <form action="{% url 'articles:update_page' article.pk %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary">수정</button>
+        </form>
+    </div>
+    <div>
+        <form action="{% url 'articles:delete' article.pk %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">삭제</button>
+        </form>
+    </div>
+{% endblock  %}
